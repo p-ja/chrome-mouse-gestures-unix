@@ -14,6 +14,22 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) =>
 			if(url)
 				chrome.tabs.create({ url });
 			break;
+
+		case 'open-new-tab':
+			chrome.tabs.getSelected(currentTab => {
+				chrome.tabs.create({ openerTabId: currentTab.id }, function(tab) {
+					//chrome.tabs.highlight({ tabs: [tab.index] });
+				});
+			});
+			break;
+
+		case 'go-back':
+			chrome.tabs.executeScript(null, { "code": "window.history.back()" });
+			break;
+
+		case 'go-forward':
+			chrome.tabs.executeScript(null, { "code": "window.history.forward()" });
+			break;
 	}
 });
 

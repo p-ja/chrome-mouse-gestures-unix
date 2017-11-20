@@ -58,6 +58,24 @@
 			// reload tab
 			'down-up'(){ window.location.reload(); },
 
+			// open new tab
+			'down'()
+			{
+				chrome.runtime.sendMessage({ action: 'open-new-tab' });
+			},
+
+			// go back
+			'left'()
+			{
+				chrome.runtime.sendMessage({ action: 'go-back' });
+			},
+
+			// go forward
+			'right'()
+			{
+				chrome.runtime.sendMessage({ action: 'go-forward' });
+			},
+
 			// // open link in new tab
 			// 'down'(el)
 			// {
